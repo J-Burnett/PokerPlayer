@@ -20,12 +20,7 @@ namespace PokerPlayer
             }
             //Players hand
             List<Card> testHand = new List<Card>();
-            //testHand.Add(new Card((int)Suit.Club, (int)Rank.Two));
-            //testHand.Add(new Card((int)Suit.Diamond, (int)Rank.Two));
-            //testHand.Add(new Card((int)Suit.Club, (int)Rank.Five));
-            //testHand.Add(new Card((int)Suit.Diamond, (int)Rank.Five));
-            //testHand.Add(new Card((int)Suit.Heart, (int)Rank.Five));
-
+            
             //Creates player
             PokerPlayer player = new PokerPlayer();
             //Draws 5 cards for game and adds them to the player's hand
@@ -137,6 +132,11 @@ namespace PokerPlayer
         }
         // Constructor that isn't used
         public PokerPlayer() { }
+
+        public void DrawNewCards (int numberOfNewCards)
+        {
+
+        }
 
         /// <summary>
         /// Checks if player has one Pair
