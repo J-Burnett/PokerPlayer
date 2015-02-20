@@ -145,7 +145,7 @@ namespace PokerPlayer
         public bool HasPair()
         {
             //checks for 1 group containing 2 of the same card rank
-            return Hand.GroupBy(x => x.CardRank).Where(x => x.Count() == 2).Count() == 1 && Hand.GroupBy(x => x.CardSuit).Distinct().Count() >= 2;
+            return Hand.GroupBy(x => x.CardRank).Where(x => x.Count() == 2).Count() == 1;
         }
 
         /// <summary>
@@ -155,14 +155,8 @@ namespace PokerPlayer
         public bool HasTwoPair()
         {
             //checks for 2 groups containing 2 of the same card rank
-            if (Hand.GroupBy(x => x.CardRank).Where(x => x.Count() == 2).Count() == 2)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (Hand.GroupBy(x => x.CardRank).Where(x => x.Count() == 2).Count() == 2);
+            
         }
         /// <summary>
         /// Checks if player has Three of a Kind
@@ -189,12 +183,8 @@ namespace PokerPlayer
             //Orders cards from highest to lowest rank
             Hand = Hand.OrderByDescending(x => x.CardRank).ToList();
             //Subtracts lowest rank from highest
-            if (Hand[0].CardRank - Hand[Hand.Count() - 1].CardRank == 4)
-            {
-               //if the difference is four, 
-               return true;
-            }
-            return false;
+            return (Hand[0].CardRank - Hand[Hand.Count() - 1].CardRank == 4);
+            
         }
 
         /// <summary>
@@ -204,7 +194,7 @@ namespace PokerPlayer
         public bool HasFlush()
         {
             //Checks for one unique suit
-            return Hand.GroupBy(x => x.CardSuit).Count() == 1 && Hand.GroupBy(x => x.CardRank).Distinct().Count() == 5;
+            return Hand.GroupBy(x => x.CardSuit).Count() == 1;
         }
 
         /// <summary>
@@ -214,17 +204,8 @@ namespace PokerPlayer
         public bool HasFullHouse()
         {
             //Checks if player has a three of a kind and a pair
-            if (HasThreeOfAKind() && HasPair())
-            {
-                this.HandRank = HandType.ThreeOfAKind;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-            //return false;
+            return HasThreeOfAKind() && HasPair();
+     
         }
 
         /// <summary>
